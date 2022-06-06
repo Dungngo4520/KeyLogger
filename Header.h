@@ -3,7 +3,7 @@
 
 #pragma warning (disable : 4996)
 
-extern bool caps, numLock, shift;
+extern bool caps, numLk, scrLk;
 
 void KeyLogger_GetAsyncKeyState();
 void KeyLogger_RawInput();
