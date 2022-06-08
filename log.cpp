@@ -11,8 +11,6 @@ void Log(char* input, const char fileName[]) {
 bool LogKey(int key) {
 	bool shift = GetAsyncKeyState(VK_SHIFT) & 0x8000; // check key down
 
-
-
 	switch (key) {
 		case 0x30: Log(shift ? "[ShiftDown])" : "0"); return true;
 		case 0x31: Log(shift ? "[ShiftDown]!" : "1"); return true;

